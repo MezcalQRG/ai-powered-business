@@ -30,8 +30,8 @@ This is a full-featured business automation platform with multiple interconnecte
 - **Functionality**: AI-powered ad creation for Facebook/Instagram with image and copy generation
 - **Purpose**: Automate marketing campaign creation without design or copywriting expertise
 - **Trigger**: User clicks "Create Campaign" from dashboard
-- **Progression**: Campaign setup → AI generates images + copy → Preview → Configure targeting → Publish to Meta
-- **Success criteria**: Complete campaign created in Meta Ads Manager, viewable in platform dashboard
+- **Progression**: Campaign setup → Select ad account → AI generates images + copy → Configure targeting → Review → Create in Meta API → Campaign created (paused) → User can activate when ready
+- **Success criteria**: Complete campaign with ad sets and creatives created via Meta Marketing API, viewable in platform dashboard and Meta Ads Manager, AI-generated copy and images, real-time sync with Meta
 
 ### Multi-Channel AI Assistant
 - **Functionality**: Automated conversational AI across Messenger, WhatsApp, SMS

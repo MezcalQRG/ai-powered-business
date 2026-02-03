@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useKV } from '@github/spark/hooks'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -16,7 +17,9 @@ import {
   Users,
   CurrencyDollar
 } from '@phosphor-icons/react'
-import type { User, Campaign, Conversation, Call, LandingPage } from '@/lib/types'
+import type { User, Campaign, Conversation, Call, LandingPage, BusinessConfig, APICredentials } from '@/lib/types'
+import CampaignManager from '@/components/CampaignManager'
+import SettingsManager from '@/components/SettingsManager'
 
 interface DashboardProps {
   user: User
@@ -27,6 +30,8 @@ type View = 'overview' | 'campaigns' | 'messages' | 'calls' | 'landing-pages' | 
 
 export default function Dashboard({ user, onSignOut }: DashboardProps) {
   const [currentView, setCurrentView] = useState<View>('overview')
+  const [businessConfig] = useKV<BusinessConfig | null>('business-config', null)
+  const [apiCredentials] = useKV<APICredentials | null>('api-credentials', null)
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-secondary/20 to-accent/10">
@@ -41,11 +46,16 @@ export default function Dashboard({ user, onSignOut }: DashboardProps) {
         <main className="flex-1 overflow-y-auto">
           <div className="p-6 md:p-8">
             {currentView === 'overview' && <OverviewView user={user} />}
-            {currentView === 'campaigns' && <CampaignsView />}
+            {currentView === 'campaigns' && businessConfig && apiCredentials && (
+              <CampaignManager 
+                businessConfig={businessConfig}
+                apiCredentials={apiCredentials}
+              />
+            )}
             {currentView === 'messages' && <MessagesView />}
             {currentView === 'calls' && <CallsView />}
             {currentView === 'landing-pages' && <LandingPagesView />}
-            {currentView === 'settings' && <SettingsView user={user} />}
+            {currentView === 'settings' && <SettingsManager user={user} />}
           </div>
         </main>
       </div>
@@ -241,36 +251,6 @@ function ConversationItem({ name, channel, message, time, unread }: {
   )
 }
 
-function CampaignsView() {
-  return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-4xl font-bold tracking-tight mb-2">Campañas Publicitarias</h1>
-          <p className="text-muted-foreground text-lg">Gestiona tus anuncios en Meta</p>
-        </div>
-        <Button size="lg">
-          <Plus size={20} className="mr-2" weight="bold" />
-          Nueva Campaña
-        </Button>
-      </div>
-
-      <Card>
-        <CardHeader>
-          <CardTitle>Campañas Activas</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="text-center py-12 text-muted-foreground">
-            <MegaphoneSimple size={48} className="mx-auto mb-4 opacity-50" weight="duotone" />
-            <p>No tienes campañas activas</p>
-            <p className="text-sm mt-2">Crea tu primera campaña para comenzar a generar leads</p>
-          </div>
-        </CardContent>
-      </Card>
-    </div>
-  )
-}
-
 function MessagesView() {
   return (
     <div className="space-y-6">
@@ -373,56 +353,6 @@ function LandingPagesView() {
           </div>
         </CardContent>
       </Card>
-    </div>
-  )
-}
-
-function SettingsView({ user }: { user: User }) {
-  return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-4xl font-bold tracking-tight mb-2">Configuración</h1>
-        <p className="text-muted-foreground text-lg">Gestiona tu cuenta y servicios</p>
-      </div>
-
-      <div className="grid gap-6 lg:grid-cols-2">
-        <Card>
-          <CardHeader>
-            <CardTitle>Información del Negocio</CardTitle>
-            <CardDescription>Edita la información que usa la IA</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Button variant="outline">Editar Información</Button>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle>Credenciales de API</CardTitle>
-            <CardDescription>Gestiona tus conexiones</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-3">
-            <ServiceStatusRow name="Proveedor de IA" connected />
-            <ServiceStatusRow name="Meta (Facebook/Instagram)" connected={false} />
-            <ServiceStatusRow name="Twilio (SMS/Llamadas)" connected={false} />
-            <ServiceStatusRow name="ElevenLabs (Voz IA)" connected={false} />
-          </CardContent>
-        </Card>
-      </div>
-    </div>
-  )
-}
-
-function ServiceStatusRow({ name, connected }: { name: string; connected: boolean }) {
-  return (
-    <div className="flex items-center justify-between p-3 rounded-lg bg-secondary/30">
-      <div className="flex items-center gap-2">
-        <div className={`w-2 h-2 rounded-full ${connected ? 'bg-accent' : 'bg-muted-foreground'}`} />
-        <span className="text-sm font-medium">{name}</span>
-      </div>
-      <Badge variant={connected ? 'default' : 'secondary'}>
-        {connected ? 'Conectado' : 'Desconectado'}
-      </Badge>
     </div>
   )
 }
