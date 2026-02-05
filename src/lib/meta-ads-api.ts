@@ -253,17 +253,17 @@ export class MetaAdsAPI {
 }
 
 export async function generateAdImageWithAI(prompt: string): Promise<string> {
-  const aiPrompt = window.spark.llmPrompt`Generate a detailed prompt for creating an advertising image based on this business context: ${prompt}. 
+  const aiPrompt = (window.spark.llmPrompt as any)`Generate a detailed prompt for creating an advertising image based on this business context: ${prompt}. 
   
   The prompt should describe a professional, eye-catching image suitable for a Facebook/Instagram ad. Focus on visual elements, colors, composition, and mood. Keep it under 100 words.`
   
   const imagePrompt = await window.spark.llm(aiPrompt, 'gpt-4o-mini')
   
-  return `https://placehold.co/1200x628/6B4CE6/FFFFFF?text=${encodeURIComponent('AI Generated Ad Image')}&font=raleway`
+  return `https://placehold.co/1200x628/D71921/FFFFFF?text=${encodeURIComponent('AI Generated Ad Image')}&font=raleway`
 }
 
 export async function generateAdCopyWithAI(businessContext: string, objective: string): Promise<{ headline: string; primaryText: string; description: string; cta: string }> {
-  const prompt = window.spark.llmPrompt`You are an expert marketing copywriter. Create compelling ad copy for a Facebook/Instagram campaign.
+  const prompt = (window.spark.llmPrompt as any)`You are an expert marketing copywriter. Create compelling ad copy for a Facebook/Instagram campaign.
 
 Business Context: ${businessContext}
 Campaign Objective: ${objective}
