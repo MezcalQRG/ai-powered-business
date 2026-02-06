@@ -1,0 +1,33 @@
+{
+  "name": "gracie-barra-backend",
+  "version": "1.0.0",
+  "description": "Firebase Genkit backend for Gracie Barra AI Academy Management System",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "genkit:start": "genkit start -- tsx --watch src/index.ts",
+    "genkit:dev": "genkit start --attach http://localhost:3400 -- tsx --watch src/index.ts"
+  },
+  "dependencies": {
+    "@genkit-ai/ai": "^0.9.0",
+    "@genkit-ai/core": "^0.9.0",
+    "@genkit-ai/dotprompt": "^0.9.0",
+    "@genkit-ai/firebase": "^0.9.0",
+    "@genkit-ai/flow": "^0.9.0",
+    "@genkit-ai/googleai": "^0.9.0",
+    "firebase-admin": "^13.0.0",
+    "twilio": "^5.4.0",
+    "express": "^5.2.1",
+    "zod": "^3.25.0",
+    "date-fns": "^3.6.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^22.19.7",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
+  }
+}
