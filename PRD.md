@@ -1,68 +1,80 @@
 # Planning Guide
 
-An AI-powered commercial automation platform for Gracie Barra that enables them to automate their marketing, customer service, and payments through a unified interface powered by their own API credentials and AI models. The platform is branded to match Gracie Barra's visual identity and feels like an integrated part of their service ecosystem.
+A comprehensive AI-powered academy management and automation platform for Gracie Barra that orchestrates all business operations: student enrollment, retention, communications, scheduling, billing, and inventory management. The system uses Firebase Genkit as the intelligent backend orchestrator with ElevenLabs + Twilio providing natural voice interactions, enabling the academy to operate autonomously while maintaining the human touch. The platform is branded to match Gracie Barra's visual identity and feels like an integrated part of their service ecosystem.
 
 **Experience Qualities**:
 1. **Bold** - Strong, confident design that embodies the martial arts spirit with high contrast and powerful visuals
-2. **Professional** - Enterprise-grade reliability that instills trust for business operations
+2. **Intelligent** - Proactive AI system that anticipates needs, identifies issues, and takes action autonomously
 3. **Unified** - Seamlessly integrated with Gracie Barra's brand identity, feeling like a native service rather than a third-party tool
 
 **Complexity Level**: Complex Application (advanced functionality, likely with multiple views)
-This is a full-featured business automation platform with multiple interconnected systems (advertising, messaging, voice AI, payments, landing pages), requiring sophisticated state management, API integrations, multi-step workflows, and a comprehensive dashboard interface.
+This is an enterprise-grade academy management platform with AI orchestration across 7 operational domains: Communications & Engagement, Lead Management & Enrollment, Student Retention & Account Management, Scheduling & Events, Data Integrity & Reporting, Inventory & Pro Shop, and Performance Metrics & KPIs. The system requires sophisticated state management, multi-channel integrations (voice, SMS, WhatsApp, Messenger), real-time monitoring, automated workflows, and comprehensive dashboards with actionable insights.
 
 ## Essential Features
 
-### Authentication & Onboarding
-- **Functionality**: Complete user registration, login, and business profile creation
-- **Purpose**: Secure access control and business context gathering for AI personalization
-- **Trigger**: New user arrives at landing page or returning user accesses login
-- **Progression**: Landing page → Sign up form → Business setup wizard → Dashboard
-- **Success criteria**: User can create account, complete business profile with AI prompt, and access dashboard
+### 1. Communications & Student Engagement System
+- **Functionality**: Omnichannel communication management across phone, email, SMS, WhatsApp, Facebook, Instagram with AI-powered responses
+- **Purpose**: Ensure all inquiries are answered within 24 hours with consistent, professional responses while maintaining student engagement
+- **Trigger**: Incoming message/call from any channel, walk-in prospect notification, or scheduled outreach
+- **Progression**: Incoming communication → Channel detection → AI context loading → Response generation → Human review queue (if needed) → Reply sent → Conversation logged
+- **Success criteria**: <24hr response time, consistent tone across channels, prospect capture rate >90%, scheduled intro lessons >80% of qualified leads
 
-### Business Configuration Hub
-- **Functionality**: Central configuration for business prompt and third-party API credentials
-- **Purpose**: Establishes the AI knowledge base and connects external services
-- **Trigger**: First login or accessing settings from dashboard
-- **Progression**: Setup wizard → Business description form → API credentials input → Validation → Save confirmation
-- **Success criteria**: Business prompt saved, API keys securely stored, connection status displayed
+### 2. Lead Management & Enrollment Operations
+- **Functionality**: Complete lead lifecycle management from first contact through enrollment, including intro lesson scheduling, follow-ups, and enrollment workflow execution
+- **Purpose**: Maximize enrollment conversions (10+ new members/month) with <20% drop between conversion stages
+- **Trigger**: New prospect identified via any channel
+- **Progression**: Lead capture → Qualification → Program presentation → Intro lesson scheduling → Reminder & confirmation → No-show recovery → Enrollment workflow → Payment setup → Student activation
+- **Success criteria**: 10+ monthly enrollments, <20% stage drop rate, automated follow-up on no-shows, enrollment funnel visibility
 
-### Meta Ads Automation
-- **Functionality**: AI-powered ad creation for Facebook/Instagram with image and copy generation
-- **Purpose**: Automate marketing campaign creation without design or copywriting expertise
-- **Trigger**: User clicks "Create Campaign" from dashboard
-- **Progression**: Campaign setup → Select ad account → AI generates images + copy → Configure targeting → Review → Create in Meta API → Campaign created (paused) → User can activate when ready
-- **Success criteria**: Complete campaign with ad sets and creatives created via Meta Marketing API, viewable in platform dashboard and Meta Ads Manager, AI-generated copy and images, real-time sync with Meta
+### 3. Student Retention & Account Management
+- **Functionality**: Proactive attendance monitoring, absentee recovery workflows, delinquent account detection and resolution, freeze/cancellation management with resell strategies
+- **Purpose**: Minimize cancellations, protect recurring revenue, maintain <25% absentee rate and <8% delinquency rate
+- **Trigger**: Daily attendance scan (automated), payment failure notification, freeze/cancellation request
+- **Progression**: Issue detection → Classification (absentee/delinquent/at-risk) → Strategy selection → Outreach execution (voice/SMS/email) → Follow-up sequence → Resolution or escalation → Log outcome
+- **Success criteria**: Absentee rate <25%, delinquency <8%, documented retention workflows, reduced churn rate
 
-### Multi-Channel AI Assistant
-- **Functionality**: Automated conversational AI across Messenger, WhatsApp, SMS
-- **Purpose**: Handle customer inquiries 24/7 with business-contextual responses
-- **Trigger**: Customer sends message on any connected channel
-- **Progression**: Message received → AI analyzes intent → Generates contextual response → Sends reply → Logs conversation
-- **Success criteria**: Messages answered within seconds, conversation history tracked, escalation options available
+### 4. Scheduling, Events & Internal Coordination
+- **Functionality**: Class schedule maintenance, seasonal event planning and communication, instructor and staff coordination
+- **Purpose**: Keep all stakeholders informed about academy operations, schedule changes, and upcoming events
+- **Trigger**: Schedule update, new event creation, or operational change
+- **Progression**: Schedule/event update → Stakeholder identification → Multi-channel notification → Confirmation tracking → Reminder sequence → Post-event follow-up
+- **Success criteria**: Real-time schedule accuracy, event attendance tracking, staff notification confirmation
 
-### Voice AI Agent
-- **Functionality**: Intelligent phone call handling with ElevenLabs voice synthesis
-- **Purpose**: Automate inbound call responses with natural voice interactions
-- **Trigger**: Incoming call to Twilio number
-- **Progression**: Call received → Voice AI greets → Processes speech → Generates response → Speaks via ElevenLabs → Logs interaction
-- **Success criteria**: Calls answered automatically, natural conversation flow, transcripts saved
+### 5. Data Integrity, Reporting & Systems Accuracy
+- **Functionality**: Automated data validation, student/billing record maintenance, attendance tracking, report generation for academy leadership
+- **Purpose**: Ensure accurate, up-to-date operational data for decision-making and compliance
+- **Trigger**: Data entry/modification, scheduled report generation, or data audit request
+- **Progression**: Data input → Validation → CRM/billing system update → Conflict resolution → Audit log → Report generation → Leadership delivery
+- **Success criteria**: Zero billing errors, daily attendance accuracy, automated weekly/monthly reports, data audit trail
 
-### Landing Page Builder
-- **Functionality**: Customizable payment-enabled landing pages from templates
-- **Purpose**: Provide conversion-optimized pages for products/services with integrated checkout
-- **Trigger**: User selects "Create Landing Page" from dashboard
-- **Progression**: Choose template → Customize branding/content → Configure payment → Publish → Generate shareable link
-- **Success criteria**: Live landing page with working payment integration, analytics tracking
+### 6. Inventory & Pro Shop Operations
+- **Functionality**: Product inventory monitoring, sales support for new and existing students, restocking alerts, product performance analytics
+- **Purpose**: Maximize Pro Shop revenue, prevent stockouts, and support student equipment needs
+- **Trigger**: Inventory level change, sales transaction, or restocking threshold reached
+- **Progression**: Inventory scan → Low-stock detection → Reorder alert → Sales opportunity identification → Product recommendation → Transaction logging → Performance reporting
+- **Success criteria**: No stockouts on core items, automated reorder alerts, sales tracking by product, upsell opportunities identified
+
+### 7. Performance Metrics & KPI Dashboard
+- **Functionality**: Real-time tracking and visualization of all academy KPIs with trend analysis and predictive insights
+- **Purpose**: Monitor academy health, identify issues early, and measure AI system performance against targets
+- **Trigger**: Continuous data aggregation from all system modules
+- **Progression**: Data collection → Metric calculation → Trend analysis → Alert generation (if thresholds breached) → Dashboard update → Insight generation
+- **Success criteria**: Real-time KPI visibility, automated alerts on threshold breaches, monthly target tracking (revenue, enrollments, retention, attendance, delinquency)
 
 ## Edge Case Handling
 
-- **API Failures**: Graceful error handling with clear messaging, retry mechanisms, and fallback options when third-party services are unavailable
-- **Missing Credentials**: Guided prompts to add required API keys when attempting actions that need them, with setup tutorials
-- **AI Rate Limits**: Queue system for AI requests with user notification about processing delays
-- **Invalid Business Prompt**: Validation and suggestions to improve business description for better AI performance
-- **Payment Processing Errors**: Clear error messages with troubleshooting steps, transaction logs for debugging
-- **Multi-Language Messages**: Language detection and appropriate AI response generation based on customer language
-- **Incomplete Onboarding**: Save partial progress and allow users to resume configuration later
+- **API Failures & Service Outages**: Graceful degradation with fallback to manual queues, retry mechanisms with exponential backoff, and clear status indicators when services are unavailable
+- **Multi-Channel Message Conflicts**: Deduplication logic when same prospect contacts via multiple channels simultaneously
+- **Payment Processing Errors**: Automated retry sequences, alternative payment method prompts, and manual resolution workflows with full audit trails
+- **No-Show Recovery**: Escalating contact strategies (SMS → Email → Voice call) with AI-personalized messaging based on student history
+- **Absentee False Positives**: Vacation/injury flag system to prevent inappropriate outreach to students on authorized absence
+- **Staff Override Requirements**: Clear escalation paths when AI cannot resolve situations, with human approval workflows for policy exceptions
+- **Data Synchronization Conflicts**: Timestamp-based conflict resolution with change history and rollback capabilities
+- **Voice Call Interruptions**: Graceful handling of mid-call disconnects with callback offers and transcript preservation
+- **Multi-Language Support**: Automatic language detection with multilingual AI responses (Spanish/Portuguese for Gracie Barra)
+- **Inventory Synchronization**: Real-time stock updates across multiple sales channels to prevent overselling
+- **KPI Threshold Breaches**: Automated alert escalation to academy leadership with recommended action plans
+- **Incomplete Onboarding**: Progressive disclosure allowing partial system use while guiding toward full configuration
 
 ## Design Direction
 

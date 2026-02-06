@@ -16,18 +16,24 @@ import {
   TrendUp,
   Users,
   CurrencyDollar,
-  ShieldCheck
+  ShieldCheck,
+  Target,
+  ShoppingCart,
+  GraduationCap
 } from '@phosphor-icons/react'
 import type { User, Campaign, Conversation, Call, LandingPage, BusinessConfig, APICredentials } from '@/lib/types'
 import CampaignManager from '@/components/CampaignManager'
 import SettingsManager from '@/components/SettingsManager'
+import StudentManagement from '@/components/StudentManagement'
+import KPIDashboard from '@/components/KPIDashboard'
+import InventoryManager from '@/components/InventoryManager'
 
 interface DashboardProps {
   user: User
   onSignOut: () => void
 }
 
-type View = 'overview' | 'campaigns' | 'messages' | 'calls' | 'landing-pages' | 'settings'
+type View = 'overview' | 'students' | 'kpis' | 'campaigns' | 'messages' | 'calls' | 'landing-pages' | 'inventory' | 'settings'
 
 export default function Dashboard({ user, onSignOut }: DashboardProps) {
   const [currentView, setCurrentView] = useState<View>('overview')
@@ -47,6 +53,8 @@ export default function Dashboard({ user, onSignOut }: DashboardProps) {
         <main className="flex-1 overflow-y-auto bg-gradient-to-br from-background to-muted/30">
           <div className="p-6 md:p-8">
             {currentView === 'overview' && <OverviewView user={user} />}
+            {currentView === 'students' && <StudentManagement />}
+            {currentView === 'kpis' && <KPIDashboard />}
             {currentView === 'campaigns' && businessConfig && apiCredentials && (
               <CampaignManager 
                 businessConfig={businessConfig}
@@ -56,6 +64,7 @@ export default function Dashboard({ user, onSignOut }: DashboardProps) {
             {currentView === 'messages' && <MessagesView />}
             {currentView === 'calls' && <CallsView />}
             {currentView === 'landing-pages' && <LandingPagesView />}
+            {currentView === 'inventory' && <InventoryManager />}
             {currentView === 'settings' && <SettingsManager user={user} />}
           </div>
         </main>
@@ -72,10 +81,13 @@ function Sidebar({ currentView, onViewChange, user, onSignOut }: {
 }) {
   const navItems: { view: View; label: string; icon: React.ReactNode }[] = [
     { view: 'overview', label: 'INICIO', icon: <ChartLine size={20} weight="fill" /> },
+    { view: 'students', label: 'ESTUDIANTES', icon: <GraduationCap size={20} weight="fill" /> },
+    { view: 'kpis', label: 'KPIs', icon: <Target size={20} weight="fill" /> },
     { view: 'campaigns', label: 'CAMPAÑAS', icon: <MegaphoneSimple size={20} weight="fill" /> },
     { view: 'messages', label: 'MENSAJES', icon: <ChatCircle size={20} weight="fill" /> },
     { view: 'calls', label: 'LLAMADAS', icon: <Phone size={20} weight="fill" /> },
     { view: 'landing-pages', label: 'LANDING PAGES', icon: <Link size={20} weight="fill" /> },
+    { view: 'inventory', label: 'PRO SHOP', icon: <ShoppingCart size={20} weight="fill" /> },
     { view: 'settings', label: 'CONFIGURACIÓN', icon: <GearSix size={20} weight="fill" /> },
   ]
 
